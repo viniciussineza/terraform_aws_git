@@ -71,3 +71,39 @@ This state is used by Terraform to map real world resources, keep track of metad
 
 + Desired State - Terraform configuration files
 + Current State - Real world resource on AWS
+
+## Terraform Variables and DataSources
+
+#### Conditions to start
++ terraform-key in AWS EC2 key pairs
+
+### Terraform Variables
+
++ Input variables
+  - serve as parameters for a Terraform module. Modules can be shared between different configurations
+  1. input variables basics
+  2. provide when prompted during terraform plan or apply
+  3. override default variable using CLI argument ```-var```
+  4. override default variable using Environment variables (TF_var_aa)
+  5. provider input variables using terraform.tfvars
+  6. provide using <name>.tfvars with CLI argument -var-file
+  7. provide input using auto.tfvars
+  8. implement complex type constructors like ***List & Map***
+  9. implement custom validation rules
+  10. protect sensitive variables
+
++ Output values
++ Local values
+
+#### DataSources
+
+- use of data sources allows a Terraform configuration to make use of information defined ***outside of Terraform***, or defined by ***another separate Terraform configuration***
+- each data resource is associated with a ***single data source***, which determines ***kind of object (or objects)*** it reads and what ***query constraint arguments*** are available
+- Meta-arguments
+  - supported = provider, count and for_each
+  - not currently supported = lifecycle
+
+#### Outputs
+
+- A child module can use outputs to ***expose a subset*** of its resouce attributes to a ***parent module***
+- When using ***remote state***, root module outputs can be accessed by other configurations via a ***terraform_remote state data source***
