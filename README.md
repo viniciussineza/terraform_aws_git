@@ -107,3 +107,16 @@ This state is used by Terraform to map real world resources, keep track of metad
 
 - A child module can use outputs to ***expose a subset*** of its resouce attributes to a ***parent module***
 - When using ***remote state***, root module outputs can be accessed by other configurations via a ***terraform_remote state data source***
+
+## Terraform Meta arguments, lists, maps and splat operator
+
++ Count
++ Lists & Maps (String)
++ Lists, Maps, Maps - Advanced (for loop)
++ Splat Operator . * . and [*]
++ ```for_each```
++ ```toset``` function
++ ```tomap``` function
+
+
+
