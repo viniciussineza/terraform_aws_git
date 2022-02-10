@@ -129,3 +129,9 @@ This state is used by Terraform to map real world resources, keep track of metad
 ### Utility project
 Build a solution that gives the availability zone that a desired ec2 instance type (like t2.micro) is supported.
 
+```aws ec2 describe-instance-type-offerings --location-type availability-zone --filters Name=instance-type,Values=t2.micro --region us-west-2 --output table
+```
+
++ Keys function to select in a tomap output just key information
+
+
