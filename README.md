@@ -118,5 +118,14 @@ This state is used by Terraform to map real world resources, keep track of metad
 + ```toset``` function
 + ```tomap``` function
 
+```Error: Error launching source instance: Unsupported: Your requested instance type (t2.micro) is not supported in your requested Availability Zone (us-west-2d). Please retry your request by not specifying an Availability Zone or choosing us-west-2a, us-west-2b, us-west-2c.
+│       status code: 400, request id: e75db6a2-b665-459a-95df-428e5fe77b46
+│
+│   with aws_instance.vm-data["us-west-2d"],
+│   on c5-instances.tf line 11, in resource "aws_instance" "vm-data":
+│   11: resource "aws_instance" "vm-data" {
+```
 
+### Utility project
+Build a solution that gives the availability zone that a desired ec2 instance type (like t2.micro) is supported.
 
