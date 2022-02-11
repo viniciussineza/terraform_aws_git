@@ -135,4 +135,77 @@ aws ec2 describe-instance-type-offerings --location-type availability-zone --fil
 
 + Keys function to select in a tomap output just key information
 
+## VPC using terraform
+
+### First creating resources with AWS management console
+
++ VCP
++ Internet Gateway
++ NAT Gateway
++ Elastic IP address
++ Route table
++ Public subnet
++ Private subnet
+
+#### Step by Step
+
+1. Create VPC
+  Name: manual-VPC
+  IPv4 CIDR Block: 10.0.0.0/16
+
+2. Create Subnets
+  + Public
+  VPC ID: manual-VPC
+  Subnet name: public-sn-1
+  Availability zone: us-west-2a
+  IPv4 CIDR Block: 10.0.1.0/24
+
+  + Private
+  Subnet name: private-sn-1
+  Availability zone: us-west-2a
+  IPv4 CIDR Block: 10.0.101.0/24
+
+3. Internet Gateway and Associate to VPC
+  Name tag: vpc-igw
+  Actions => Attach to VPC => manual-VPC
+
+4. NAT Gateway
+  Name: nat-gateway
+  subnet: public-sn-1
+  Allocate elastic IP
+
+5. Public Route Table, Routes and associate to subnets
+  5.1. Public Route Table
+  Name tag: public-RT
+  VPC: manual-VPC
+
+  5.2. Public Route
+  Add Route
+  Destination: 0.0.0.0/0
+  Target: vpc-igw
+
+  5.3. Associate Public subnet
+  name: public-sn-1
+
+6. Private Route Table, Routes associate to subnets
+  6.1. Private Route Table
+  Name tag: private-RT
+  VPC: manual-VPC
+
+  6.2. Private Route
+  Add Route
+  Destination: 0.0.0.0/0
+  Target: nat-gateway
+
+  6.3. Associate Private subnet
+  name: private-sn-1
+
+### Learning about
+
++ Terraform Modules
++ Terraform variables - terraform.tfvars
++ Terraform variables - vpc.auto-tfvars
++ Terraform version constrains
++ Terraform code organization - Production Grade style
+
 
