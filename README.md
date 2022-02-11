@@ -175,29 +175,29 @@ aws ec2 describe-instance-type-offerings --location-type availability-zone --fil
   Allocate elastic IP
 
 5. Public Route Table, Routes and associate to subnets
-  5.1. Public Route Table
+  1. Public Route Table
   Name tag: public-RT
   VPC: manual-VPC
 
-  5.2. Public Route
+  2. Public Route
   Add Route
   Destination: 0.0.0.0/0
   Target: vpc-igw
 
-  5.3. Associate Public subnet
+  3. Associate Public subnet
   name: public-sn-1
 
 6. Private Route Table, Routes associate to subnets
-  6.1. Private Route Table
+  1. Private Route Table
   Name tag: private-RT
   VPC: manual-VPC
 
-  6.2. Private Route
+  2. Private Route
   Add Route
   Destination: 0.0.0.0/0
   Target: nat-gateway
 
-  6.3. Associate Private subnet
+  3. Associate Private subnet
   name: private-sn-1
 
 ### Learning about
@@ -208,4 +208,13 @@ aws ec2 describe-instance-type-offerings --location-type availability-zone --fil
 + Terraform version constrains
 + Terraform code organization - Production Grade style
 
+#### Terraform Modules
+
+Containers for multiple resources that are used together. A module consists of a collection of .tf files in a directory.
++ The may way to package and reuse resource configurations
++ Every terraform configuration has at least one module, known as root module
++ A module (usually the root module) can call other modules to include their resources into the configuration
++ A module that has been called is referred as a child module
++ A Child module can be called multiple times within the same configuration. And multiple configurations can use the same child module.
++ Terraform can load modules from local filesystem, public or private registry. By that you can create modules and publish them for others to use.
 
